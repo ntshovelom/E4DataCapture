@@ -1,0 +1,59 @@
+﻿@model IEnumerable<E4DataCapture.Models.User>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="page_heading">
+    <h2 class="text-center">Users</h2>
+</div>
+<div class="text-right right">
+    @Html.ActionLink("Add User", "Create", "Home", new { @class = "btn btn-primary" })
+</div>
+
+<br />
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CellNumber)
+        </th>
+
+        <th></th>
+
+
+    </tr>
+
+    @if (Model != null)
+    {
+        foreach (var usr in Model)
+        {
+
+<tr>
+    <td>
+        @usr.Name 
+    </td>
+
+    <td>
+        @usr.Surname
+    </td>
+    <td>
+        @usr.CellNumber
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new {userId = usr.UserID, name = usr.Name, surname =usr.Surname, cellNumber = usr.CellNumber }, new { @class = "btn btn-info" }) 
+        @Html.ActionLink("Delete", "Delete", "Home", new { Id = usr.UserID }, new { @class = "btn btn-danger" })
+    </td>
+
+
+</tr>
+        }
+    }
+</table>
